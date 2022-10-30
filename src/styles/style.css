@@ -1,0 +1,48 @@
+ul{
+    list-style: none;
+}
+li{
+    list-style: none;
+}
+.widgets{
+    display: flex;
+    flex-direction:column;
+    margin: 0 auto;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+}
+.widget-container{
+    margin: 0 auto;
+    border:3px solid black;
+    display:flex;
+    flex-direction: column;
+}
+.input{
+    margin-top:79px;
+    margin:0 auto;
+}
+.button{
+    width: 600px;
+    height: 91px;
+    background-color: #355FCA;
+    color: white;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+}
+.input-name{
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+}
+.input-field{
+    display:inline;
+    width: 405px;
+    height: 49px;
+    margin-left:47px;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+}
