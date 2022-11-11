@@ -1,33 +1,33 @@
 // import {weatherMatch} from "./weather-match.js";
 // console.log(weatherMatch)
 const weatherMatch = {
-    "0" : "./weather/icons8-sun-100.png",
-    "1" : "./weather/icons8-sun-100.png",
-    "2" : "./weather/icons8-partly-cloudy-day-100.png",
-    "3" : "./weather/icons8-cloud-100.png",
-    "45" : "./weather/icons8-fog-100.png",
-    "48" : "./weather/icons8-fog-100.png",
-    "51" : "./weather/icons8-light-rain-100.png",
-    "53" : "./weather/icons8-light-rain-100.png",
-    "55" : "./weather/icons8-light-rain-100.png",
-    "56" : "./weather/icons8-light-rain-100.png",
-    "57" : "./weather/icons8-light-rain-100.png",
-    "61" : "./weather/icons8-light-rain-100.png",
-    "63" : "./weather/icons8-rain-100.png",
-    "65" : "./weather/icons8-heavy-rain-100.png",
-    "66" : "./weather/icons8-light-rain-100.png",
-    "67" : "./weather/icons8-heavy-rain-100.png",
-    "71" : "./weather/icons8-light-snow-100.png",
-    "73" : "./weather/icons8-snow-100.png",
-    "75" : "./weather/icons8-snow-100.png",
-    "80" : "./weather/icons8-light-rain-100.png",
-    "81" : "./weather/icons8-rain-100.png",
-    "82" : "./weather/icons8-heavy-rain-100.png",
-    "85" : "./weather/icons8-light-snow-100.png",
-    "86" : "./weather/icons8-snow-100.png",
-    "95" : "./weather/icons8-storm-100.png",
-    "96" : "./weather/icons8-storm-100.png",
-    "99" : "./weather/icons8-storm-100.png",
+    "0" : "./src/weather/icons8-sun-100.png",
+    "1" : "./src/weather/icons8-sun-100.png",
+    "2" : "./src/weather/icons8-partly-cloudy-day-100.png",
+    "3" : "./src/weather/icons8-cloud-100.png",
+    "45" : "./src/weather/icons8-fog-100.png",
+    "48" : "./src/weather/icons8-fog-100.png",
+    "51" : "./src/weather/icons8-light-rain-100.png",
+    "53" : "./src/weather/icons8-light-rain-100.png",
+    "55" : "./src/weather/icons8-light-rain-100.png",
+    "56" : "./src/weather/icons8-light-rain-100.png",
+    "57" : "./src/weather/icons8-light-rain-100.png",
+    "61" : "./src/weather/icons8-light-rain-100.png",
+    "63" : "./src/weather/icons8-rain-100.png",
+    "65" : "./src/weather/icons8-heavy-rain-100.png",
+    "66" : "./src/weather/icons8-light-rain-100.png",
+    "67" : "./src/weather/icons8-heavy-rain-100.png",
+    "71" : "./src/weather/icons8-light-snow-100.png",
+    "73" : "./src/weather/icons8-snow-100.png",
+    "75" : "./src/weather/icons8-snow-100.png",
+    "80" : "./src/weather/icons8-light-rain-100.png",
+    "81" : "./src/weather/icons8-rain-100.png",
+    "82" : "./src/weather/icons8-heavy-rain-100.png",
+    "85" : "./src/weather/icons8-light-snow-100.png",
+    "86" : "./src/weather/icons8-snow-100.png",
+    "95" : "./src/weather/icons8-storm-100.png",
+    "96" : "./src/weather/icons8-storm-100.png",
+    "99" : "./src/weather/icons8-storm-100.png",
 }
 const headers = new Headers();
 headers.set("Access-Control-Allow-Origin", "*")
@@ -79,14 +79,14 @@ function addWidget(htmlChild, appContainer){
 }
 async function fetchWeatherData(coordinates){
         const [weather, time] = await Promise.all([
-            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current_weather=true&weathercode`, {mode: "cors", headers: {'Access-Control-Allow-Origin':'*'}})
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current_weather=true&weathercode`)
             .then((res) =>{
                 if (res.ok){
                     return res.json()
                 }
                 throw new Error("Ошибка соединения")
             }),
-            fetch(`https://timeapi.io/api/Time/current/coordinate?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}`,{mode: "cors", headers: {'Access-Control-Allow-Origin':'*'}})
+            fetch(`https://timeapi.io/api/Time/current/coordinate?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}`)
             .then((res) => {
                 if (res.ok){
                     return res.json()
