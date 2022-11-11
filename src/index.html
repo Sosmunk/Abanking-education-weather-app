@@ -7,17 +7,34 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="index.js"></script>
+        <script type ="module" src="weather-match.js"></script>
         <link rel="stylesheet" href="./styles/style.css">
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=b22f4a6b-cbc7-4e61-bc57-5e3c655e90fb&lang=ru_RU" type="text/javascript"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"> 
     </head>
     <body>
         <main>
             <div class="widget-container" id="weather-1">
                 <div class="input">
-                    <p class="input-name">Широта<input class="input-field" type="text" id="latitude"></p>
-                    <p class="input-name">Долгота<input class="input-field" type="text" id ="longitude"></p>
+                    <p class="input-name">Широта<input class="input-field" type="text" name="latitude"></p>
+                    <p class="input-name">Долгота<input class="input-field" type="text" name="longitude" style="margin-left: 41px"></p>
                     <button class="button" onclick="getWeather('weather-1')">Показать погоду</button>
                 </div>
-                <div class="widgets" id="widgets">
+                <div class="widgets">
+                    <ul class="widgets-list">
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="widget-container" id="weather-2">
+                <div class="input">
+                    <p class="input-name">Широта<input class="input-field" type="text" name="latitude"></p>
+                    <p class="input-name">Долгота<input class="input-field" type="text" name="longitude" style="margin-left: 41px"></p>
+                    <button class="button" onclick="getWeather('weather-2')">Показать погоду</button>
+                </div>
+                <div class="widgets">
                     <ul class="widgets-list">
                         
                     </ul>
