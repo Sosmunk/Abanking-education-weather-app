@@ -6,7 +6,6 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="./src/weather-match.mjs" type="module"></script>
         <script src="./src/index.js"></script>
         <link rel="stylesheet" href="./src/styles/style.css">
         <script src="https://api-maps.yandex.ru/2.1/?apikey=b22f4a6b-cbc7-4e61-bc57-5e3c655e90fb&lang=ru_RU" type="text/javascript"></script>
@@ -16,28 +15,19 @@
     </head>
     <body>
         <main>
-            <div class="widget-container" id="weather-1">
-                <div class="input">
-                    <p class="input-name">Широта<input class="input-field" type="text" name="latitude"></p>
-                    <p class="input-name">Долгота<input class="input-field" type="text" name="longitude" style="margin-left: 41px"></p>
-                    <button class="button" onclick="getWeather('weather-1')">Показать погоду</button>
-                </div>
-                <div class="widgets">
-                    <ul class="widgets-list">
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="widget-container" id="weather-2">
-                <div class="input">
-                    <p class="input-name">Широта<input class="input-field" type="text" name="latitude"></p>
-                    <p class="input-name">Долгота<input class="input-field" type="text" name="longitude" style="margin-left: 41px"></p>
-                    <button class="button" onclick="getWeather('weather-2')">Показать погоду</button>
-                </div>
-                <div class="widgets">
-                    <ul class="widgets-list">
-                        
-                    </ul>
+            <div id="weather-app-container">
+                <button class="button" onclick="addWeatherApp()">Добавить виджет с погодой</button>
+                <div class="widget-container" id="weather-1">
+                    <div class="input">
+                        <p class="input-name">Широта<input class="input-field" type="text" name="latitude"></p>
+                        <p class="input-name">Долгота<input class="input-field" type="text" name="longitude" style="margin-left: 41px"></p>
+                        <button class="button" onclick="getWeather('1')">Показать погоду</button>
+                    </div>
+                    <div class="widgets">
+                        <ul class="widgets-list">
+                            
+                        </ul>
+                    </div>
                 </div>
             </div>
         </main>

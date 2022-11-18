@@ -24,7 +24,8 @@ li{
 }
 .widget-container{
     margin: 0 auto;
-    border:3px solid black;
+    margin-bottom: 0.3px;
+    border:1px solid black;
     display:flex;
     flex-direction: column;
 }
