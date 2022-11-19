@@ -1,23 +1,5 @@
 let widgetCounter = 1;
 
-// Скрипт для включения cors прокси
-(function() {
-    var cors_api_host = 'cors-anywhere.herokuapp.com';
-    var cors_api_url = 'https://' + cors_api_host + '/';
-    var slice = [].slice;
-    var origin = window.location.protocol + '//' + window.location.host;
-    var open = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function() {
-        var args = slice.call(arguments);
-        var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-        if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
-            targetOrigin[1] !== cors_api_host) {
-            args[1] = cors_api_url + args[1];
-        }
-        return open.apply(this, args);
-    };
-})();
-
 async function getWeather(id){
     let widgetContainer = document.getElementById(`weather-${id}`)
     let widgets = widgetContainer.querySelector(".widgets-list");
@@ -44,8 +26,12 @@ async function addWeatherElements(widgetContainer, widgets){
 function getCoordinates(widgetContainer){
     const latitude = widgetContainer.querySelector("input[name='latitude']").value.replace(',','.');
     const longitude = widgetContainer.querySelector("input[name='longitude']").value.replace(',','.');
-    if ((isNaN(latitude) || isNaN(parseFloat(latitude)))
-     || (isNaN(longitude)) || isNaN(parseFloat(longitude))){
+    const floatLatitude = parseFloat(latitude);
+    const floatLongitude = parseFloat(longitude);
+    if ((isNaN(latitude) || isNaN(floatLatitude))
+     || (isNaN(longitude)) || isNaN(floatLongitude)
+     || (floatLatitude > 90 || floatLatitude < -90)
+     || (floatLatitude > 180 || floatLongitude < -180)){
         throw new Error("Введенные данные некорректны");
     }
     else{
@@ -71,22 +57,23 @@ function addWidget(htmlChild, widgetContainer){
 }
 async function fetchWeatherData(coordinates){
         const [weather, time] = await Promise.all([
-            fetch(`https://cors-anywhere.herokuapp.com/https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current_weather=true&weathercode`)
+            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&current_weather=true&weathercode`)}`)
             .then((res) =>{
                 if (res.ok){
                     return res.json()
                 }
-                throw new Error(res.status)
-            }),
-            fetch(`https://cors-anywhere.herokuapp.com/https://timeapi.io/api/Time/current/coordinate?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}`)
+                throw new Error()
+            })
+            .then(data => JSON.parse(data.contents)),
+            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://timeapi.io/api/Time/current/coordinate?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}`)}`)
             .then((res) => {
                 if (res.ok){
                     return res.json()
                 }
-                throw new Error(res.status)
+                throw new Error()
             })
+            .then(data => JSON.parse(data.contents))
         ]);
-
         return {weather,time}
 }
 
